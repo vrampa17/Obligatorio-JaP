@@ -11,7 +11,7 @@ document.getElementById("logBtn").addEventListener("click", function () {
     //debe cumplir con los siquientes requisitos: 
     //los campos de texto no pueden estar vacios
     if((pass1.value == "")||(email.value == "")){
-        showAlertError()
+    alert("Los campos no pueden estar vacios")
     }else{
         window.location.href = "https://vrampa17.github.io/Obligatorio-JaP/inicio";
     }
