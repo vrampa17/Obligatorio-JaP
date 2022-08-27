@@ -1,12 +1,21 @@
 let listado = []
 
+function mostrarAutos() {
 
-function mostrarAutos(){
     let htmlContentToAppend = "";
+
+    htmlContentToAppend = `
+                        
+                <div class="container text-center p-4"">
+                    <h1>Productos</h1>
+                    <p class=" lead">Verás aqui todos los productos de la categoria ${listado.catName}</p>
+                </div >
+                `
 
     for (let autos of listado.products) {
 
         htmlContentToAppend += `
+        
                 <div onclick="setCatID(${autos.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
@@ -28,13 +37,15 @@ function mostrarAutos(){
 
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    getJSONData(PODUCTS_AUTOS_URL).then(function (resultObj) {
+    let catID = localStorage.getItem("catID")
+    getJSONData(PODUCTS_AUTOS_URL + catID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
             listado = resultObj.data
             mostrarAutos()
         }
     })
 })
+
 
 
 
