@@ -1,10 +1,6 @@
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
 const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-// (agrgue
-const PODUCTS_AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/"
-// agrgue)
-
 const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
 const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
@@ -46,12 +42,10 @@ let getJSONData = function (url) {
 }
 
 
-
+//mostrar email en la barra de navegación cuando cargue la pagina con el logalStorage.getItem recupera el dato de email y lo muestra
 document.addEventListener("DOMContentLoaded", function () {
 
-
   email_json = localStorage.getItem("email");
-
   document.getElementById("email").innerHTML = email_json;
 
 })
