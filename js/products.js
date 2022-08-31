@@ -3,6 +3,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 let listado = []
+let search = "";
 
 
 // function sortCategories(criteria, array) {
@@ -79,10 +80,12 @@ function mostrarProducto() {
 
 
     for (let producto of listado.products) {
-
+        //validar los if aún, ordenarlos esta en proceso 
         if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))) {
-            htmlContentToAppend += `
+
+            if (producto.name.toLowerCase().includes(search.toLowerCase())) {
+                htmlContentToAppend += `
         
                 <div onclick="setCatID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
@@ -99,14 +102,16 @@ function mostrarProducto() {
                 </div>
                 </div>
                 `
+            }
         }
     }
     document.getElementById("producto").innerHTML = htmlContentToAppend;
 }
 
 document.addEventListener("DOMContentLoaded", function (e) {
-
-    let catID = localStorage.getItem("catID")
+    //obtiene el catID de la pagina
+    let catID = localStorage.getItem("catID");
+    //con la url de prducts el cat id y la extensión .json formamos la url deseada para cada producto. 
     getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
             listado = resultObj.data
@@ -115,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 })
 
-//funciona, limpiar
+//boton limpiar, borrar lo que se habia filtrado.
 document.getElementById("clearRangeFilter").addEventListener("click", function () {
     document.getElementById("rangeFilterCountMin").value = "";
     document.getElementById("rangeFilterCountMax").value = "";
@@ -125,7 +130,7 @@ document.getElementById("clearRangeFilter").addEventListener("click", function (
 
     mostrarProducto()
 });
-
+//filtrar por precio
 document.getElementById("rangeFilterCount").addEventListener("click", function () {
     //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
     minCount = document.getElementById("rangeFilterCountMin").value;
@@ -149,4 +154,8 @@ document.getElementById("rangeFilterCount").addEventListener("click", function (
 });
 
 
+document.getElementById("buscador").addEventListener("input", function () {
+    search = document.getElementById("buscador").value;
+    mostrarProducto();
 
+})
