@@ -5,6 +5,7 @@ let listado = []
 let search = "";
 
 
+
 function mostrarProducto() {
 
     let htmlContentToAppend = "";
@@ -13,7 +14,7 @@ function mostrarProducto() {
     titiulo = `
                         
             <h1>Productos</h1>
-            <p class=" lead">Verás aqui todos los productos de la categoria ${listado.catName}</p>
+            <p>Verás aqui todos los productos de la categoria ${listado.catName}</p>
             `
 
     document.getElementById("titulo").innerHTML = titiulo;
@@ -98,7 +99,7 @@ document.getElementById("ordDesRelevancia").addEventListener("click", function (
 });
 
 
-//boton limpiar, borrar lo que se habia filtrado. DEBO CAMBIAR LOS NOMBRES
+//boton limpiar, borrar lo que se habia filtrado. DEBO CAMBIAR LOS NOMbres
 document.getElementById("clearRangeFilter").addEventListener("click", function () {
     document.getElementById("rangeFilterCountMin").value = "";
     document.getElementById("rangeFilterCountMax").value = "";
