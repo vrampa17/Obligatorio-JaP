@@ -1,44 +1,8 @@
-const ORDER_ASC_BY_PRICE = "Price";
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 let listado = []
 let search = "";
-
-
-function ordenarProductos(criteria, array) {
-    let result = [];
-    if (criteria === ORDER_ASC_BY_PRICE) {
-        result = array.sort(function (a, b) {
-            let aCount = parseInt(a.cost);
-            let bCount = parseInt(b.cost);
-
-            if (aCount > bCount) { return -1; }
-            if (aCount < bCount) { return 1; }
-            return 0;
-        });
-    } else if (criteria === ordenar_precio_des) {
-        result = array.sort(function (a, b) {
-            let aCount = parseInt(a.cost);
-            let bCount = parseInt(b.cost);
-
-            if (aCount > bCount) { return -1; }
-            if (aCount < bCount) { return 1; }
-            return 0;
-        });
-    } else if (criteria === ordenar_relevancia_des) {
-        result = array.sort(function (a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
-
-            if (aCount > bCount) { return -1; }
-            if (aCount < bCount) { return 1; }
-            return 0;
-        });
-    }
-
-    return result;
-}
 
 
 function mostrarProducto() {
@@ -96,33 +60,45 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 })
 
-function mostrarProductosOrdenados(ordenarProductos, productsArray) {
-    criterioOrdenamiento = ordenarProductos;
-
-    if (productsArray != undefined) {
-        listado = productsArray;
-    }
-
-    listado = criterioOrdenamiento(criterioOrdenamiento, listado);
-
-    //Muestro las categorías ordenadas
-    mostrarProducto();
+//ordena el listado de productos teniendo en cuenta su pecio (listado.products.cost) de forma ascendente
+function ordenarPrecioAsd() {
+    listado.products.sort(function (a, b) {
+        return parseInt(a.cost) - parseInt(b.cost);
+    });
+    mostrarProducto()
 }
+//ordena el listado de productos teniendo en cuenta su pecio (listado.products.cost) de forma descendente
+function ordenarPrecioDes() {
+    listado.products.sort(function (a, b) {
+        return parseInt(b.cost) - parseInt(a.cost);
+    });
+    mostrarProducto()
+}
+
+//ordena el listado de productos teniendo en cuenta su relevancia, la vantidad de productos vendidos (listado.products.soldCount) de forma descendente
+function ordenarRelevanciaDes() {
+    listado.products.sort(function (a, b) {
+        return parseInt(b.soldCount) - parseInt(a.soldCount);
+    });
+    mostrarProducto()
+}
+
+//cuando haga click en el boton que tiene id ordAsdPrecio ejecuta la funcion  ordenarPrecioAsd()
 document.getElementById("ordAsdPrecio").addEventListener("click", function () {
-    mostrarProductosOrdenados(ordenar_precio_asd);
+    ordenarPrecioAsd();
 
 });
-
+//cuando haga click en el boton que tiene id ordDesPrecio ejecuta la funcion ordenarPrecioDes()
 document.getElementById("ordDesPrecio").addEventListener("click", function () {
-    mostrarProductosOrdenados(ordenar_precio_des);
+    ordenarPrecioDes();
 });
-
+//cuando haga click en el boton que tiene id ordDesRelevancia ejecuta la funcion  ordenarRelevanciaDes()
 document.getElementById("ordDesRelevancia").addEventListener("click", function () {
-    mostrarProductosOrdenados(ordenar_relevancia_des);
+    ordenarRelevanciaDes();
 });
 
 
-//boton limpiar, borrar lo que se habia filtrado.
+//boton limpiar, borrar lo que se habia filtrado. DEBO CAMBIAR LOS NOMBRES
 document.getElementById("clearRangeFilter").addEventListener("click", function () {
     document.getElementById("rangeFilterCountMin").value = "";
     document.getElementById("rangeFilterCountMax").value = "";
@@ -132,7 +108,7 @@ document.getElementById("clearRangeFilter").addEventListener("click", function (
 
     mostrarProducto()
 });
-//filtrar por precio
+//filtrar por precio DEBO CAMBIAR LOS NOMBRES
 document.getElementById("rangeFilterCount").addEventListener("click", function () {
     //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
     minCount = document.getElementById("rangeFilterCountMin").value;
