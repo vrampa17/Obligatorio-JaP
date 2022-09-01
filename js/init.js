@@ -45,10 +45,17 @@ let getJSONData = function (url) {
 //mostrar email en la barra de navegación cuando cargue la pagina con el logalStorage.getItem recupera el dato de email y lo muestra
 document.addEventListener("DOMContentLoaded", function () {
 
-  email_json = localStorage.getItem("email");
+  email_json = JSON.parse(localStorage.getItem("email"));
+
   document.getElementById("email").innerHTML = email_json;
 
 })
+
+document.getElementById("cerrar_sesion").addEventListener("click", function () {
+
+  window.location.href = "index.html"
+}
+);
 
 
 
