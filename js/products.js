@@ -1,4 +1,3 @@
-let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 let listado = []
@@ -21,7 +20,7 @@ function mostrarProducto() {
 
 
     for (let producto of listado.products) {
-        //validar los if aún, ordenarlos esta en proceso 
+
         if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))) {
 
@@ -99,21 +98,21 @@ document.getElementById("ordDesRelevancia").addEventListener("click", function (
 });
 
 
-//boton limpiar, borrar lo que se habia filtrado. DEBO CAMBIAR LOS NOMbres
+//boton limpiar, borrar lo que se habia filtrado. 
 document.getElementById("clearRangeFilter").addEventListener("click", function () {
-    document.getElementById("rangeFilterCountMin").value = "";
-    document.getElementById("rangeFilterCountMax").value = "";
+    document.getElementById("filtrarPrecioMin").value = "";
+    document.getElementById("filtrarPrecioMax").value = "";
 
     minCount = undefined;
     maxCount = undefined;
 
     mostrarProducto()
 });
-//filtrar por precio DEBO CAMBIAR LOS NOMBRES
-document.getElementById("rangeFilterCount").addEventListener("click", function () {
+//filtrar por precio
+document.getElementById("filtroPrecio").addEventListener("click", function () {
     //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
-    minCount = document.getElementById("rangeFilterCountMin").value;
-    maxCount = document.getElementById("rangeFilterCountMax").value;
+    minCount = document.getElementById("filtrarPrecioMin").value;
+    maxCount = document.getElementById("filtrarPrecioMax").value;
 
     if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0) {
         minCount = parseInt(minCount);
@@ -132,7 +131,7 @@ document.getElementById("rangeFilterCount").addEventListener("click", function (
     mostrarProducto();
 });
 
-
+//Parte del buscador, con el evento input, cuando se va escribiendo va ejecutando
 document.getElementById("buscador").addEventListener("input", function () {
     search = document.getElementById("buscador").value;
     mostrarProducto();
