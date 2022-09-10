@@ -27,7 +27,7 @@ function mostrarProducto() {
             if (producto.name.toLowerCase().includes(search.toLowerCase())) {
                 htmlContentToAppend += `
         
-                <div onclick="setCatID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
+                <div onclick="setProdID(${producto.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${producto.image}" alt="${producto.description}" class="img-thumbnail">
@@ -137,3 +137,9 @@ document.getElementById("buscador").addEventListener("input", function () {
     mostrarProducto();
 
 })
+
+
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}

@@ -10,6 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -32,14 +33,40 @@
           </li>
           <li class="nav-item nav-link" id="email">
           </li>
+          </li>
+          <button class="btn btn-light btn-block" id="cerrar_sesion">Cerrar sesion</button>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
-  <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+  <main class="pb-5">
+    <div class="container p-4">
+      <div id="info">
+      </div>
+      <div id="img" class="col-30 row align-items-start">
+      </div>
+      <div>
+        <ul class="list-group">
+          <div id="comentarios"></div>
+          <div id="estrellas"></div>
+          <div id="agregarNuevoComentario"></div>
+        </ul>
+
+        <h4 class="mt-4">Comentar</h4>
+
+        <div class="col-sm-4">
+
+          <label for="opinion" class="form-label mt-2">Tu opinión</label>
+          <textarea class="form-control" rows="3" id="comentario"></textarea>
+
+          <label for="opinion" class="form-label mb-2 mt-3">Tu puntuación</label>
+          <input type="number" class="form-control pd-4" id="puntuacion">
+
+          <button type="button" class="btn btn-primary mt-3" id="enviarComentario">Enviar</button>
+
+        </div>
+
       </div>
     </div>
   </main>

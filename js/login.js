@@ -7,6 +7,7 @@ document.getElementById("logBtn").addEventListener("click", function () {
     if ((pass1 == "") || (email == "")) {
         alert("Completar campos");
     } else {
+        //guardamos el valor
         localStorage.setItem("email", email_json);
         window.location.href = "inicio.html";
     }
