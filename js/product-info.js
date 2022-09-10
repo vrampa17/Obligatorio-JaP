@@ -64,7 +64,7 @@ function mostrarComentarios() {
     for (let comentario of listadoComentarios) {
         agregarHTML += `
         <li class="list-group-item">
-            <p class="mb-1"><span class="fw-bold">${comentario.user}</span> . ${comentario.dateTime} . ${comentario.score}</p>
+            <p class="mb-1"><span class="fw-bold">${comentario.user}</span> . ${comentario.dateTime} . ${mostrarEstrellas(comentario.score)}</p>
             <p class="mb-1">${comentario.description}</p>
         </li>
         `
@@ -84,9 +84,32 @@ document.getElementById("enviarComentario").addEventListener('click', function (
 
     agregarComentario += `
         <li class="list-group-item">
-            <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${puntuacion}</p>
+            <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${mostrarEstrellas(puntuacion)}</p>
             <p class="mb-1">${comentario}</p>
         </li>
     `
     document.getElementById("agregarNuevoComentario").innerHTML += agregarComentario;
 })
+// una forma de hacer las estrellas
+// function mostrarEstrellas(puntuacion) {
+//     let estrellaChequead = '<span class="fa fa-star checked"></span>';
+//     let estrellaNotChequead = '<span class="fa fa-star"></span>';
+//     let PuntFinal = estrellaChequead.repeat(puntuacion) + estrellaNotChequead.repeat(5 - puntuacion);
+
+//     return (PuntFinal);
+// }
+
+// funcion mostrar estrellas
+function mostrarEstrellas(puntuacion) {
+    let agregar = "";
+    for (let recoorrido = 1; recoorrido < 6; recoorrido++) {
+        if (recoorrido <= puntuacion) {
+            agregar +=
+                '<span class="fa fa-star checked"></span>'
+        }
+        else {
+            agregar += '<span class="fa fa-star"></span>'
+        }
+    }
+    return (agregar);
+}
