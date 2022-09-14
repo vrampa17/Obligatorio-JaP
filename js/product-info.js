@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 document.addEventListener("DOMContentLoaded", function (e) {
     //obtiene el prodID de la pagina
     let prodID = localStorage.getItem("prodID");
-    //con la url de PRODUCT_INFO el prod id y la extensión .json formamos la url deseada para cada producto.
+    // obtenemos el json sobre los comentarios de cada producto
     getJSONData(PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
             listadoComentarios = resultObj.data
@@ -55,12 +55,14 @@ function infoProducto() {
     document.getElementById("img").innerHTML = mostrarImagenes;
 }
 
+// agrega los comentarios que nos brindan en el json.
 function mostrarComentarios() {
     let agregarHTML = "";
 
     agregarHTML += `
             <h3 class="mb-3 mt-4">Comentarios</h3>
     `
+    //recorre el listado de los comentarios y los imprime en html
     for (let comentario of listadoComentarios) {
         agregarHTML += `
         <li class="list-group-item">
@@ -72,7 +74,9 @@ function mostrarComentarios() {
     document.getElementById("comentarios").innerHTML = agregarHTML;
 }
 
+
 document.getElementById("enviarComentario").addEventListener('click', function () {
+    //obtengo el valor en el input de puntuacion y el del comentario (lo que el usuario escribe)
     var puntuacion = document.getElementById("puntuacion").value;
     var comentario = document.getElementById("comentario").value;
     //mostrar hora y fecha
@@ -83,25 +87,19 @@ document.getElementById("enviarComentario").addEventListener('click', function (
     let agregarComentario = "";
 
     agregarComentario += `
-        <li class="list-group-item">
-            <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${mostrarEstrellas(puntuacion)}</p>
-            <p class="mb-1">${comentario}</p>
-        </li>
-    `
+                <li class="list-group-item">
+                    <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${mostrarEstrellas(puntuacion)}</p>
+                    <p class="mb-1">${comentario}</p>
+                </li>
+                `
+    //agrego al html con lo valores obtenidos anteriormente 
     document.getElementById("agregarNuevoComentario").innerHTML += agregarComentario;
 })
-// una forma de hacer las estrellas
-// function mostrarEstrellas(puntuacion) {
-//     let estrellaChequead = '<span class="fa fa-star checked"></span>';
-//     let estrellaNotChequead = '<span class="fa fa-star"></span>';
-//     let PuntFinal = estrellaChequead.repeat(puntuacion) + estrellaNotChequead.repeat(5 - puntuacion);
 
-//     return (PuntFinal);
-// }
-
-// funcion mostrar estrellas
+// funcion mostrar estrellas, a travez de la puntuacion (numero del 1 al 5) y va agregando 
 function mostrarEstrellas(puntuacion) {
     let agregar = "";
+
     for (let recoorrido = 1; recoorrido < 6; recoorrido++) {
         if (recoorrido <= puntuacion) {
             agregar +=
@@ -113,3 +111,5 @@ function mostrarEstrellas(puntuacion) {
     }
     return (agregar);
 }
+
+
