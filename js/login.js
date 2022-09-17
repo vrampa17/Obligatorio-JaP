@@ -6,6 +6,8 @@ document.getElementById("logBtn").addEventListener("click", function () {
 
     if ((pass1 == "") || (email == "")) {
         alert("Completar campos");
+        document.getElementById("validacionEmail").classList.add('was-validated')
+        document.getElementById("validacionPass").classList.add('was-validated')
     } else {
         //guardamos el valor
         localStorage.setItem("email", email_json);

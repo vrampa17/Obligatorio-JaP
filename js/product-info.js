@@ -48,7 +48,7 @@ function infoProducto() {
     for (let img of listado.images) {
         mostrarImagenes += `
         <div class="col">
-            <img src="${img}" alt="imgProducto" class="img-thumbnail">
+            <img src="${img}" alt="imgProducto" class="img-thumbnail gallery-item">
         </div>
         `
     }
@@ -113,3 +113,11 @@ function mostrarEstrellas(puntuacion) {
 }
 
 
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("gallery-item")) {
+        const src = e.target.getAttribute("src");
+        document.querySelector(".modal-img").src = src;
+        var myModal = new bootstrap.Modal(document.getElementById("gallery-modal"))
+        myModal.show();
+    }
+})
