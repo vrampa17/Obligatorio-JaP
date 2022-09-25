@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
         if (resultObj.status == "ok") {
             listado = resultObj.data
             infoProducto()
+            productosRelacionados()
         }
     })
 })
@@ -45,14 +46,21 @@ function infoProducto() {
     document.getElementById("info").innerHTML = htmlContentToAppend;
 
     let mostrarImagenes = "";
-    for (let img of listado.images) {
+    mostrarImagenes += `
+        <div class="carousel-item active">
+            <img src="${listado.images[0]}" alt="imgProducto" class="d-block w-100">
+        </div>
+        `
+    for (let i = 1; i < listado.images.length; i++) {
         mostrarImagenes += `
-        <div class="col">
-            <img src="${img}" alt="imgProducto" class="img-thumbnail gallery-item">
+        <div class="carousel-item">
+            <img src="${listado.images[i]}" alt="imgProducto" class="d-block w-100">
         </div>
         `
     }
     document.getElementById("img").innerHTML = mostrarImagenes;
+
+
 }
 
 // agrega los comentarios que nos brindan en el json.
@@ -112,12 +120,27 @@ function mostrarEstrellas(puntuacion) {
     return (agregar);
 }
 
+//agrego productos relacionados 
 
-document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("gallery-item")) {
-        const src = e.target.getAttribute("src");
-        document.querySelector(".modal-img").src = src;
-        var myModal = new bootstrap.Modal(document.getElementById("gallery-modal"))
-        myModal.show();
+function productosRelacionados() {
+    let agregarProdRel = "";
+
+    for (let prod of listado.relatedProducts) {
+
+        agregarProdRel += `
+            <div onclick="setProdID(${prod.id})" class="card col-sm-1 cursor-active" style="width: 18rem;">
+                <img src="${prod.image}" class="card-img-top" alt="img">
+                <div class="card-body">
+                    <p class="card-text">${prod.name}</p>
+                </div>
+            </div>
+        `
     }
-})
+
+    document.getElementById("ProdRel").innerHTML = agregarProdRel;
+
+
+}
+
+
+

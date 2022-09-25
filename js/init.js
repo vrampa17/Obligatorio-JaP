@@ -42,6 +42,13 @@ let getJSONData = function (url) {
 }
 
 
+//guardo id del producto 
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  window.location = "product-info.html"
+}
+
+
 //mostrar email en la barra de navegación cuando cargue la pagina con el logalStorage.getItem recupera el dato de email y lo muestra
 document.addEventListener("DOMContentLoaded", function () {
   //obtenemos el valor y lo pasamos a objeto
@@ -53,9 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("cerrar_sesion").addEventListener("click", function () {
 
-  window.location.href = "index.html"
+  window.location.href = "index.html";
+  localStorage.removeItem("email");
 }
 );
+
+
 
 
 
