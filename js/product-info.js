@@ -104,27 +104,19 @@ document.getElementById("enviarComentario").addEventListener('click', function (
     document.getElementById("agregarNuevoComentario").innerHTML += agregarComentario;
 })
 
-// funcion mostrar estrellas, a travez de la puntuacion (numero del 1 al 5) y va agregando 
+//edito funcion mostrar estrellas
 function mostrarEstrellas(puntuacion) {
-    let agregar = "";
+    let estrellasCompletas = '<span class="fa fa-star checked"></span>';
+    let estrellasVacias = '<span class="fa fa-star"></span>';
+    let sumaEstrellas = estrellasCompletas.repeat(puntuacion) + estrellasVacias.repeat(5 - puntuacion);
 
-    for (let recoorrido = 1; recoorrido < 6; recoorrido++) {
-        if (recoorrido <= puntuacion) {
-            agregar +=
-                '<span class="fa fa-star checked"></span>'
-        }
-        else {
-            agregar += '<span class="fa fa-star"></span>'
-        }
-    }
-    return (agregar);
+    return (sumaEstrellas);
 }
 
-//agrego productos relacionados 
-
+//agrego productos relacionados
 function productosRelacionados() {
     let agregarProdRel = "";
-
+    // reccorro el los productos relativos, me guardo el id del prod para luego poder redirrecionarlo a la info de ese prod
     for (let prod of listado.relatedProducts) {
 
         agregarProdRel += `
@@ -136,10 +128,7 @@ function productosRelacionados() {
             </div>
         `
     }
-
     document.getElementById("ProdRel").innerHTML = agregarProdRel;
-
-
 }
 
 

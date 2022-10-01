@@ -65,6 +65,29 @@ document.getElementById("cerrar_sesion").addEventListener("click", function () {
 }
 );
 
+// Scroll Up
+
+document.getElementById("boton-up").addEventListener("click", scrollUp);
+
+function scrollUp() {
+  var desplScroll = document.documentElement.scrollTop;
+  if (desplScroll > 0) {
+    window.scrollTo(0, 0)
+  }
+}
+
+botonUp = document.getElementById("boton-up");
+
+window.onscroll = function () {
+  var scroll = document.documentElement.scrollTop;
+  if (scroll > 100) {
+    botonUp.style.transform = "scale(1)";
+  } else if (scroll < 100) {
+    botonUp.style.transform = "scale(0)";
+  }
+}
+////
+
 
 
 
