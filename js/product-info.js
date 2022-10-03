@@ -1,5 +1,6 @@
 let listado = []
 let listadoComentarios = []
+
 document.addEventListener("DOMContentLoaded", function (e) {
     //obtiene el prodID de la pagina
     let prodID = localStorage.getItem("prodID");
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     })
 })
+
+
 function infoProducto() {
 
     let htmlContentToAppend = "";

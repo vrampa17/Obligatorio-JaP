@@ -60,13 +60,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("cerrar_sesion").addEventListener("click", function () {
 
-  window.location.href = "index.html";
+  //elimina el usuario que se habia registrado 
   localStorage.removeItem("email");
 }
 );
 
-// Scroll Up
 
+
+// Scroll Up
 document.getElementById("boton-up").addEventListener("click", scrollUp);
 
 function scrollUp() {
