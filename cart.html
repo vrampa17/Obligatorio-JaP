@@ -46,11 +46,71 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h1 class="text-center p-4">Carrito de compras</h1>
+      <h3>Articulos a comprar</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="col">
+              <img src="" alt="imgProd" class="img-thumbnail imgPrdCompra" id="imgProd">
+            </th>
+            <td id="name" class="col-3"></td>
+            <td id="precio" class="col-3"></td>
+            <td class="col-3"><input type="number" name="productCountInput" class="form-control" id="cantProd" value="1"
+                min="0"></td>
+            <td id="costoFinal" class="col-3</td>
+          </tr>
+          <tr id=" nuevosProd">
+
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+
+        <h4>Tipo de envío</h4>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Premium 2 a 5 días (15%)
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Express 5 a 8 días (7%)
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+          <label class="form-check-label" for="flexRadioDefault3">
+            Standard 12 a 15 días (5%)
+          </label>
+        </div>
+
+        <br>
+        <h4>Dirección de envío</h4>
+        <label for="calle" class="form-label">Calle</label>
+        <input class="form-control" type="text" aria-label="default input example">
+
+        <label for="calle" class="form-label">Número</label>
+        <input class="form-control" type="text" aria-label="default input example">
+
+        <label for="calle" class="form-label">Esquina</label>
+        <input class="form-control" type="text" aria-label="default input example">
       </div>
     </div>
-
     <!-- scroll up -->
     <div id="boton-up">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up"

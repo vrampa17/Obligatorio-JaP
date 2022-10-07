@@ -134,5 +134,16 @@ function productosRelacionados() {
     document.getElementById("ProdRel").innerHTML = agregarProdRel;
 }
 
+document.getElementById("btnComprar").addEventListener("click", function () {
+    let name_json = JSON.stringify(listado.name);
+    let currency_json = JSON.stringify(listado.currency);
+    let cost_json = JSON.stringify(listado.cost);
+    let img_json = JSON.stringify(listado.images[0]);
+
+    localStorage.setItem("name", name_json);
+    localStorage.setItem("currency", currency_json);
+    localStorage.setItem("cost", cost_json);
+    localStorage.setItem("img", img_json);
+})
 
 

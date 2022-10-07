@@ -1,6 +1,7 @@
 document.getElementById("logBtn").addEventListener("click", function () {
     var pass1 = document.getElementById("password").value;
     var email = document.getElementById("email").value;
+    console.log(email)
     let email_json = JSON.stringify(email);
     //los campos de texto no pueden estar vacios
 

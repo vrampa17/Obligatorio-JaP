@@ -216,3 +216,11 @@ a.custom-card:hover {
   transform: scale(1.1);
   border-color: rgb(0, 0, 0, 0.5);
 }
+
+.imgPrdCompra {
+  width: 40%;
+}
+
+#cantProd {
+  width: 60%;
+}
