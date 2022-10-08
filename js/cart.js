@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function agregarProdCarrito() {
 
+
+
     let { articles: [articles] } = listado,
 
         { name: name, unitCost: costo, currency: currency, image: img, count: cantidad } = articles;
@@ -20,20 +22,35 @@ function agregarProdCarrito() {
     document.getElementById("name").innerHTML = name;
     document.getElementById("precio").innerHTML = ` ${currency} ${costo}`;
     document.getElementById("costoFinal").innerHTML = parseInt(cantidad) * parseInt(costo);
-    document.getElementById("name").innerHTML = name;
     cantProd.value = cantidad;
 
-    name_json = localStorage.getItem("name");
-    cost_json = localStorage.getItem("cost");
-    currency_json = localStorage.getItem("currency");
-    img_json = localStorage.getItem("img");
+
+
+    productoAgregado(1)
+}
+
+function productoAgregado(cant) {
+
+    name_json = JSON.parse(localStorage.getItem("name"));
+    cost_json = JSON.parse(localStorage.getItem("cost"));
+    currency_json = JSON.parse(localStorage.getItem("currency"));
+    img_json = JSON.parse(localStorage.getItem("img"));
+
+
+    newImgProd.src = img_json;
+    document.getElementById("newName").innerHTML = name_json;
+    document.getElementById("newPrecio").innerHTML = ` ${currency_json} ${cost_json}`;
+    document.getElementById("newCostoFinal").innerHTML = parseInt(cant) * parseInt(cost_json);
+    newCantProd.value = cant;
+    // let prodComprados = "";
 
     // prodComprados += `
-    // <tr>
-    //     <th scope="row"><img src="${img}" alt="imgProd" class="img-thumbnail"></th>
+    //     <th scope="row"><img src="${img_json}" alt="imgProd" class="img-thumbnail"></th>
     //     <td>${name_json}</td>
     //     <td>${currency_json} ${cost_json}</td>
-    // </tr>
+    //     <td class="col-3"><input type="number" name="productCountInput" class="form-control cantPrd" value="1"
+    //             min="0"></td>
+    //     <td id="costoFinal" class="col">${cantProd.value * parseInt(cost_json)}</td>
     // `
     // document.getElementById("nuevosProd").innerHTML = prodComprados;
 }
@@ -42,8 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document.getElementById("cantProd").addEventListener("change", function () {
-
-
 
         let { articles: [articles] } = listado,
 
@@ -63,4 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+    document.getElementById("newCantProd").addEventListener("change", function () {
+
+        var cantidad = document.getElementById("newCantProd").value;
+        productoAgregado(cantidad)
+    });
+
 })
+

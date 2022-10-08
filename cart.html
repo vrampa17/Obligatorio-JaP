@@ -27,7 +27,7 @@
             <a class="nav-link" href="categories.html">Categorías</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cart.html">Vender</a>
+            <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <!-- agrego menu para el usuario -->
           <div class="dropdown">
@@ -61,16 +61,23 @@
         <tbody>
           <tr>
             <th scope="row" class="col">
-              <img src="" alt="imgProd" class="img-thumbnail imgPrdCompra" id="imgProd">
+              <img src="" alt="imgProd" class="img-thumbnail" id="imgProd">
             </th>
             <td id="name" class="col-3"></td>
             <td id="precio" class="col-3"></td>
-            <td class="col-3"><input type="number" name="productCountInput" class="form-control" id="cantProd" value="1"
-                min="0"></td>
-            <td id="costoFinal" class="col-3</td>
+            <td class="col-3"><input type="number" name="productCountInput" class="form-control cantPrd" id="cantProd"
+                value="" min="0"></td>
+            <td class="col"><strong id="costoFinal"></strong></td>
           </tr>
-          <tr id=" nuevosProd">
-
+          <tr id="nuevosProd">
+            <th scope="row" class="col">
+              <img src="" alt="imgProd" class="img-thumbnail" id="newImgProd">
+            </th>
+            <td id="newName" class="col-3"></td>
+            <td id="newPrecio" class="col-3"></td>
+            <td class="col-3"><input type="number" name="productCountInput" class="form-control cantPrd"
+                id="newCantProd" value="" min="0"></td>
+            <td class="col"><strong id="newCostoFinal"></strong></td>
           </tr>
         </tbody>
       </table>

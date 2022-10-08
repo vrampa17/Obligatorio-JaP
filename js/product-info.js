@@ -134,6 +134,10 @@ function productosRelacionados() {
     document.getElementById("ProdRel").innerHTML = agregarProdRel;
 }
 
+function showAlertSuccess() {
+    document.getElementById("alert-success").classList.add("show");
+}
+
 document.getElementById("btnComprar").addEventListener("click", function () {
     let name_json = JSON.stringify(listado.name);
     let currency_json = JSON.stringify(listado.currency);
@@ -144,6 +148,10 @@ document.getElementById("btnComprar").addEventListener("click", function () {
     localStorage.setItem("currency", currency_json);
     localStorage.setItem("cost", cost_json);
     localStorage.setItem("img", img_json);
+
+
+    showAlertSuccess();
 })
+
 
 
