@@ -220,3 +220,8 @@ a.custom-card:hover {
 .cantPrd {
   width: 40%;
 }
+
+.btnArreglo {
+  width: min-content;
+  height: min-content;
+}

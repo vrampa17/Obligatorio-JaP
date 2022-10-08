@@ -29,11 +29,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 function infoProducto() {
 
+    document.getElementById("nombreProdTitulo").innerHTML = listado.name;
+
+
     let htmlContentToAppend = "";
 
     htmlContentToAppend = `
             <div class="row">            
-            <h1>${listado.name}</h1>
+            
             <hr>
             <p class="mb-1 fw-bold">Precio</p>
             <p>${listado.currency} ${listado.cost}</p>
@@ -47,6 +50,7 @@ function infoProducto() {
             <div>
             `
     document.getElementById("info").innerHTML = htmlContentToAppend;
+
 
     let mostrarImagenes = "";
     mostrarImagenes += `
