@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
     getJSONData(CART_INFO_URL + "25801" + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
             listado = resultObj.data;
+            agregarProdCarrito()
             let prod_json = JSON.stringify(listado.articles);
             localStorage.setItem("prodUser", prod_json);
-            agregarProdCarrito()
         }
     })
 })
 
 function agregarProdCarrito() {
+
     let prod = JSON.parse(localStorage.getItem("prodUser"));
     let agregarHtml = "";
     agregarHtml = `
@@ -26,13 +27,6 @@ function agregarProdCarrito() {
                 </tr>
         `
     document.getElementById("agregarNewProds").innerHTML = agregarHtml;
-
-    document.getElementById("cantProd").addEventListener("change", function (e) {
-        prod[0].count = this.value
-        prod_json = JSON.stringify(prod);
-        localStorage.setItem("prodUser", prod_json);
-        agregarProdCarrito()
-    })
 
     let nuevoProd = JSON.parse(localStorage.getItem("nuevoProd"));
     if (nuevoProd !== null) {
@@ -53,10 +47,13 @@ function agregarProdCarrito() {
                 </tr>
         `
             }
+
             validacion = parseInt(nuevoProd[i].id);
         }
         document.getElementById("agregarNewProds").innerHTML = agregarHtml;
     }
+
+
     document.querySelectorAll('input').forEach((input) => {
         input.addEventListener('change', () => {
             let actualizoDatos = JSON.parse(localStorage.getItem("nuevoProd"));
@@ -67,8 +64,17 @@ function agregarProdCarrito() {
             carrito_json = JSON.stringify(actualizoDatos);
             localStorage.setItem("nuevoProd", carrito_json);
             agregarProdCarrito()
+
         })
     })
+
+    document.getElementById("cantProd").addEventListener("change", function (e) {
+        prod[0].count = this.value
+        prod_json = JSON.stringify(prod);
+        localStorage.setItem("prodUser", prod_json);
+        agregarProdCarrito()
+    })
+
 }
 
 
