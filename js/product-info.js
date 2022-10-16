@@ -1,6 +1,7 @@
 let listado = []
 let listadoComentarios = []
 
+
 document.addEventListener("DOMContentLoaded", function (e) {
     //obtiene el prodID de la pagina
     let prodID = localStorage.getItem("prodID");
@@ -29,35 +30,34 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
 function infoProducto() {
 
-    document.getElementById("nombreProdTitulo").innerHTML = listado.name;
-
-
     let htmlContentToAppend = "";
 
     htmlContentToAppend = `
             <div class="row">            
-            
-            <hr>
-            <p class="mb-1 fw-bold">Precio</p>
-            <p>${listado.currency} ${listado.cost}</p>
-            <p class="mb-1 fw-bold">Descripción</p>
-            <p>${listado.description} </p>
-            <p class="mb-1 fw-bold">Categoria</p>
-            <p>${listado.category} </p>
-            <p class="mb-1 fw-bold">Cantidad de vendidos</p>
-            <p>${listado.soldCount} </p>
-            <p class="mb-3 fw-bold">Imagenes ilustrativas</p>
+            <div class="row justify-content-between">
+                 <h1 class="col-4">${listado.name}</h1>
             <div>
+    <hr>
+        <p class="mb-1 fw-bold">Precio</p>
+        <p>${listado.currency} ${listado.cost}</p>
+        <p class="mb-1 fw-bold">Descripción</p>
+        <p>${listado.description} </p>
+        <p class="mb-1 fw-bold">Categoria</p>
+        <p>${listado.category} </p>
+        <p class="mb-1 fw-bold">Cantidad de vendidos</p>
+        <p>${listado.soldCount} </p>
+        <p class="mb-3 fw-bold">Imagenes ilustrativas</p>
+        <div>
             `
     document.getElementById("info").innerHTML = htmlContentToAppend;
 
 
     let mostrarImagenes = "";
     mostrarImagenes += `
-        <div class="carousel-item active">
-            <img src="${listado.images[0]}" alt="imgProducto" class="d-block w-100">
-        </div>
-        `
+            <div class="carousel-item active">
+                <img src="${listado.images[0]}" alt="imgProducto" class="d-block w-100">
+            </div>
+            `
     for (let i = 1; i < listado.images.length; i++) {
         mostrarImagenes += `
         <div class="carousel-item">
@@ -76,7 +76,7 @@ function mostrarComentarios() {
 
     agregarHTML += `
             <h3 class="mb-3 mt-4">Comentarios</h3>
-    `
+            `
     //recorre el listado de los comentarios y los imprime en html
     for (let comentario of listadoComentarios) {
         agregarHTML += `
@@ -102,11 +102,11 @@ document.getElementById("enviarComentario").addEventListener('click', function (
     let agregarComentario = "";
 
     agregarComentario += `
-                <li class="list-group-item">
-                    <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${mostrarEstrellas(puntuacion)}</p>
-                    <p class="mb-1">${comentario}</p>
-                </li>
-                `
+            <li class="list-group-item">
+                <p class="mb-1"><span class="fw-bold">${email_json}</span> . ${fechaYHora} . ${mostrarEstrellas(puntuacion)}</p>
+                <p class="mb-1">${comentario}</p>
+            </li>
+            `
     //agrego al html con lo valores obtenidos anteriormente 
     document.getElementById("agregarNuevoComentario").innerHTML += agregarComentario;
 })
@@ -137,25 +137,5 @@ function productosRelacionados() {
     }
     document.getElementById("ProdRel").innerHTML = agregarProdRel;
 }
-
-function showAlertSuccess() {
-    document.getElementById("alert-success").classList.add("show");
-}
-
-document.getElementById("btnComprar").addEventListener("click", function () {
-    let name_json = JSON.stringify(listado.name);
-    let currency_json = JSON.stringify(listado.currency);
-    let cost_json = JSON.stringify(listado.cost);
-    let img_json = JSON.stringify(listado.images[0]);
-
-    localStorage.setItem("name", name_json);
-    localStorage.setItem("currency", currency_json);
-    localStorage.setItem("cost", cost_json);
-    localStorage.setItem("img", img_json);
-
-
-    showAlertSuccess();
-})
-
 
 

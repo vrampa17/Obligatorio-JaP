@@ -59,13 +59,11 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 document.getElementById("cerrar_sesion").addEventListener("click", function () {
-
   //elimina el usuario que se habia registrado 
   localStorage.removeItem("email");
-}
-);
+  localStorage.removeItem("nuevoProd");
 
-
+});
 
 // Scroll Up
 document.getElementById("boton-up").addEventListener("click", scrollUp);
@@ -87,8 +85,6 @@ window.onscroll = function () {
     botonUp.style.transform = "scale(0)";
   }
 }
-////
-
 
 
 

@@ -58,27 +58,8 @@
             <th scope="col">Subtotal</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row" class="col">
-              <img src="" alt="imgProd" class="img-thumbnail" id="imgProd">
-            </th>
-            <td id="name" class="col-3"></td>
-            <td id="precio" class="col-3"></td>
-            <td class="col-3"><input type="number" name="productCountInput" class="form-control cantPrd" id="cantProd"
-                value="" min="0"></td>
-            <td class="col"><strong id="costoFinal"></strong></td>
-          </tr>
-          <tr id="nuevosProd">
-            <th scope="row" class="col">
-              <img src="" alt="imgProd" class="img-thumbnail" id="newImgProd">
-            </th>
-            <td id="newName" class="col-3"></td>
-            <td id="newPrecio" class="col-3"></td>
-            <td class="col-3"><input type="number" name="productCountInput" class="form-control cantPrd"
-                id="newCantProd" value="" min="0"></td>
-            <td class="col"><strong id="newCostoFinal"></strong></td>
-          </tr>
+        <tbody id="agregarNewProds">
+
         </tbody>
       </table>
 
@@ -98,7 +79,6 @@
             Express 5 a 8 días (7%)
           </label>
         </div>
-
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
           <label class="form-check-label" for="flexRadioDefault3">
@@ -145,6 +125,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+
 </body>
 
 </html>
