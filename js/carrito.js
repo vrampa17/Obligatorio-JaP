@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     })
 })
 
+document.addEventListener("DOMContentLoaded", function () {
+    getJSONData(CART_INFO_URL + "25801" + EXT_TYPE).then(function (resultObj) {
+        if (resultObj.status == "ok") {
+            listado = resultObj.data;
+            nuevoProd = JSON.parse(localStorage.getItem("nuevoProd"));
+        }
+    })
+})
 //
 
 function showAlertSuccess() {
@@ -27,11 +35,17 @@ document.getElementById("btnComprar").addEventListener("click", function () {
 function agregarAlCarrito(prod) {
 
     nuevoProd = JSON.parse(localStorage.getItem("nuevoProd"));
-
+    console.log('prod.unitCost', prod)
     const cant = {
-        cantProdCarrito: 1
+        count: 1,
+        currency: prod.currency,
+        id: prod.id,
+        image: prod.images[0],
+        name: prod.name,
+        unitCost: prod.cost,
+
     };
-    const finalResult = Object.assign(prod, cant);
+    const finalResult = Object.assign(cant);
 
     if (nuevoProd === null) {
         carrito.push(finalResult);
@@ -42,8 +56,7 @@ function agregarAlCarrito(prod) {
 
         const isLargeNumber = (element) => element.id === productoUn.id;
         let lugar = nuevoProd.findIndex(isLargeNumber)
-        console.log('lugar', lugar)
-        nuevoProd[lugar].cantProdCarrito = nuevoProd[lugar].cantProdCarrito + 1;
+        nuevoProd[lugar].count = nuevoProd[lugar].count + 1;
         carrito_json = JSON.stringify(nuevoProd);
         localStorage.setItem("nuevoProd", carrito_json);
 

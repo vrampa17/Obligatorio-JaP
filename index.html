@@ -16,42 +16,43 @@
   </style>
 </head>
 
-<body>
+<body class="fondo">
 
   <main class="mt-5">
     <div class="container text-center">
       <!-- Empiezo con mi login -->
       <div class="mt-5">
-        <img src="img/login.png" alt="login" width="500px">
+        <img src="img/login-2.png" alt="login" width="500px">
       </div>
-      <h2>inicio de sesión</h2>
+      <div class="login">
+        <h2>Inicio de sesión</h2>
 
-      <!-- Email  -->
-      <div class="container w-25 mt-5">
-        <div id="validacionEmail">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" placeholder="Email" class="form-control" id="email" required>
-          <!-- required para que funcione el was-validated  -->
-          <div class="invalid-feedback">
-            Ingresa tu e-mail.
+        <!-- Email  -->
+        <div class="container mt-4">
+          <div id="validacionEmail">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" placeholder="Email" class="form-control" id="email" required>
+            <!-- required para que funcione el was-validated  -->
+            <div class="invalid-feedback">
+              Ingresa tu e-mail.
+            </div>
           </div>
-        </div>
-        <!-- contraseña  -->
-        <div id="validacionPass" class="mt-3">
-          <label for="password" class="form-label">Contraseña</label>
-          <input type="password" placeholder="Contraseña" class="form-control" id="password" required>
-          <div class="invalid-feedback">
-            Ingresa tu contraseña.
+          <!-- contraseña  -->
+          <div id="validacionPass" class="mt-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" placeholder="Contraseña" class="form-control" id="password" required>
+            <div class="invalid-feedback">
+              Ingresa tu contraseña.
+            </div>
           </div>
+
+          <!-- boton -->
+          <button type="button" class="mt-2 btn btn-primary" data-bs-toggle="button" id="logBtn">Ingresar</button>
+
         </div>
-
-        <!-- boton -->
-        <button type="button" class="mt-2 btn btn-primary" data-bs-toggle="button" id="logBtn">Ingresar</button>
-
       </div>
+      <!-- termina mi login  -->
     </div>
-    <!-- termina mi login  -->
-
   </main>
 
 

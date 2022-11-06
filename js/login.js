@@ -6,7 +6,6 @@ document.getElementById("logBtn").addEventListener("click", function () {
     //los campos de texto no pueden estar vacios
 
     if ((pass1 == "") || (email == "")) {
-        alert("Completar campos");
         document.getElementById("validacionEmail").classList.add('was-validated')
         document.getElementById("validacionPass").classList.add('was-validated')
     } else {

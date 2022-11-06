@@ -56,6 +56,8 @@
             <th scope="col">Costo</th>
             <th scope="col">Cantidad</th>
             <th scope="col">Subtotal</th>
+            <th scope="col"></th>
+
           </tr>
         </thead>
         <tbody id="agregarNewProds">
@@ -63,49 +65,175 @@
         </tbody>
       </table>
 
-      <div>
+      <form action="#" class="row g-3" id="form">
+        <div>
+          <h4>Tipo de envío</h4>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Premium 2 a 5 días (15%)
+            </label>
+          </div>
 
-        <h4>Tipo de envío</h4>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-          <label class="form-check-label" for="flexRadioDefault1">
-            Premium 2 a 5 días (15%)
-          </label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check2">
+            <label class="form-check-label" for="flexRadioDefault2">
+              Express 5 a 8 días (7%)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check3" checked>
+            <label class="form-check-label" for="flexRadioDefault3">
+              Standard 12 a 15 días (5%)
+            </label>
+          </div>
+
+          <br>
+          <h4>Dirección de envío</h4>
+          <div class="row ">
+            <div class="col">
+              <label for="calle" class="form-label">Calle</label>
+              <input class="form-control" id="calle" type="text" aria-label="default input example" required>
+              <div class="invalid-feedback">
+                Ingrese calle de su domicilio
+              </div>
+            </div>
+
+            <div class="col">
+              <label for="calle" class="form-label">Número</label>
+              <input class="form-control" type="number" aria-label="default input example" required>
+              <div class="invalid-feedback">
+                Ingrese número de su domicilio
+              </div>
+            </div>
+
+            <div>
+              <label for="calle" class="form-label">Esquina</label>
+              <input class="form-control" type="text" aria-label="default input example" required>
+              <div class="invalid-feedback">
+                Ingrese esquina de su domicilio
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-          <label class="form-check-label" for="flexRadioDefault2">
-            Express 5 a 8 días (7%)
-          </label>
+        <hr>
+
+        <h4 class="mb-3">Costos</h4>
+        <ul class="list-group mb-3">
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Subtotal</h6>
+              <small class="text-muted">Costo unitario del producto por cantidad</small>
+            </div>
+            <span class="text-muted" id="precioSubtotal">-</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+              <h6 class="my-0">Costo de envío</h6>
+              <small class="text-muted">Según el tipo de envío</small>
+            </div>
+            <span class="text-muted" id="precioComision">-</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total ($)</span>
+            <strong id="precioTotal">-</strong>
+          </li>
+        </ul>
+        <hr class="mb-4">
+
+        <h4 class="mb-3">Forma de pago</h4>
+
+        <div>
+          <p><span id="mensajeFormPagoSelec">No ha seleccionado</span><a href="#" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+              Seleccionar
+            </a></p>
+          <p id="validModal"></p>
+
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-          <label class="form-check-label" for="flexRadioDefault3">
-            Standard 12 a 15 días (5%)
-          </label>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="formaDePagoCredit"
+                    required="">
+                  <label class="form-check-label" for="formaDePago1">
+                    Tarjeta de credito
+                  </label>
+                </div>
+                <hr>
+                <div class="row">
+
+                  <div class="col">
+                    <label for="calle" class="form-label">Número de tarjeta</label>
+                    <input class="form-control" type="number" id="datosCredit1">
+                    <div class="invalid-feedback">
+                      Ingrese número de tarjeta
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <label for="calle" class="form-label">Código de seg.</label>
+                    <input class="form-control" type="number" id="datosCredit2">
+                    <div class="invalid-feedback">
+                      Ingrese Código de seg.
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="calle" class="form-label">Vencimiento(MM/AA)</label>
+                  <input class="form-control" type="number" id="datosCredit3">
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault1" id="formaDePagoDebit">
+                  <label class="form-check-label" for="formaDePago2">
+                    Tarjeta de debito
+                  </label>
+                </div>
+                <hr>
+                <div>
+                  <label for="calle" class="form-label">Número de cuenta</label>
+                  <input class="form-control" type="number" id="datosDebit">
+                  <div class="invalid-feedback">
+                    Ingrese un número de cuenta
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <br>
-        <h4>Dirección de envío</h4>
-        <label for="calle" class="form-label">Calle</label>
-        <input class="form-control" type="text" aria-label="default input example">
+        </br></br>
+        <button class="btn btn-primary" type="submit" id="regBtn">Finalizar Compra</button>
 
-        <label for="calle" class="form-label">Número</label>
-        <input class="form-control" type="text" aria-label="default input example">
-
-        <label for="calle" class="form-label">Esquina</label>
-        <input class="form-control" type="text" aria-label="default input example">
+      </form>
+      <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+        <p>¡Has comprado con exito!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-    </div>
-    <!-- scroll up -->
-    <div id="boton-up">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up"
-        viewBox="0 0 16 16">
-        <path fill-rule="evenodd"
-          d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
-      </svg>
-    </div>
+
+      <!-- scroll up -->
+      <div id="boton-up">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+        </svg>
+      </div>
   </main>
   <footer class="text-muted">
     <div class="container">

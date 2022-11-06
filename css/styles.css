@@ -225,3 +225,18 @@ a.custom-card:hover {
   width: min-content;
   height: min-content;
 }
+
+.login {
+  background-color: white;
+  border-radius: 2%;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 2rem;
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+.fondo {
+  background-color: beige;
+}
