@@ -15,7 +15,6 @@ let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-
 let getJSONData = function (url) {
   let result = {};
   showSpinner();
@@ -41,7 +40,6 @@ let getJSONData = function (url) {
     });
 }
 
-
 //guardo id del producto 
 function setProdID(id) {
   localStorage.setItem("prodID", id);
@@ -52,15 +50,14 @@ function setProdID(id) {
 //mostrar email en la barra de navegación cuando cargue la pagina con el logalStorage.getItem recupera el dato de email y lo muestra
 document.addEventListener("DOMContentLoaded", function () {
   //obtenemos el valor y lo pasamos a objeto
-  email_json = JSON.parse(localStorage.getItem("email"));
+  let email_json = JSON.parse(localStorage.getItem("email"));
 
   document.getElementById("email").innerHTML = `<svg xmlns = "http://www.w3.org/2000/svg" width = "16" height = "16" fill = "currentColor" class="bi bi-person-circle" viewBox = "0 0 16 16" >
-  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path d;="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-</svg> ` + email_json;
+  </svg> ` + email_json
 
 })
-
 
 document.getElementById("cerrar_sesion").addEventListener("click", function () {
   //elimina el usuario que se habia registrado 
@@ -70,13 +67,23 @@ document.getElementById("cerrar_sesion").addEventListener("click", function () {
 });
 
 document.getElementById("miPerfil").addEventListener('click', redireccionar)
+document.getElementById("miCarrito").addEventListener('click', redireccionarCarrito)
+
 // evalua si esta logueado y lo redirecciona segun corresponda, al login si no esta logueado y al perfil si si lo esta
 function redireccionar() {
-  email_json = JSON.parse(localStorage.getItem("email"));
-  if (email_json === null) {
+  let email_json = localStorage.getItem("email");
+  if (email_json == null) {
     window.location = "index.html"
   } else {
     window.location = "my-profile.html"
+  }
+}
+function redireccionarCarrito() {
+  let email_json = localStorage.getItem("email");
+  if (email_json == null) {
+    window.location = "index.html"
+  } else {
+    window.location = "cart.html"
   }
 }
 // Scroll Up

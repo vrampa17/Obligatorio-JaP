@@ -49,7 +49,7 @@
               aria-expanded="false">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" id="miCarrito">Mi carrito</a></li>
               <li><a class="dropdown-item" id="miPerfil">Mi perfil</a></li>
               <li><a class="dropdown-item" href="index.html" id="cerrar_sesion">Cerrar sesion</a></li>
             </ul>
@@ -59,27 +59,36 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <h1>Perfil</h1>
+    <div class="container" id="validar">
+      <div class="row">
+        <div class=" col">
+          <br><br>
+          <h1>Perfil</h1>
+        </div>
+        <div class="col">
+          <img src="img/img_perfil.png" class="img-thumbnail tamImg" id="imgPerfil">
+        </div>
+      </div>
+
       <hr>
       <div class="row">
         <div class="mb-3 col">
           <label class="form-label">Primer nombre*</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" required>
+          <input type="text" class="form-control" id="primerNombre" required>
         </div>
         <div class="mb-3 col">
           <label class="form-label">Segundo nombre</label>
-          <input type="text" class="form-control" id="apellido">
+          <input type="text" class="form-control" id="SegNombre">
         </div>
       </div>
       <div class="row">
         <div class="mb-3 col">
           <label class="form-label">Primer apellido*</label>
-          <input type="text" class="form-control" required>
+          <input type="text" class="form-control" id="primerApellido" required>
         </div>
         <div class="mb-3 col">
           <label class="form-label">Segundo apellido</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" id="SegApellido">
         </div>
       </div>
       <div class="row">
@@ -89,13 +98,25 @@
         </div>
         <div class="mb-3 col">
           <label class="form-label">Teléfono de contacto*</label>
-          <input type="text" class="form-control" required>
+          <input type="text" class="form-control" id="contacto" required>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col">
+          <label class="form-label">Foto de perfil</label>
+          <input type="file" class="form-control" id="fotoPerfil">
         </div>
       </div>
       <br><br><br>
       <hr>
-      <button type="button" class="btn btn-primary">Guardar cambios</button>
+      <button type="button" class="btn btn-primary" id="btnPerfil">Guardar cambios</button>
     </div>
+
+    <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+      <p>¡Se guardaron los datos correctamente!</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
 
     <!-- scroll up -->
     <div id="boton-up">

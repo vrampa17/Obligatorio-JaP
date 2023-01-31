@@ -36,7 +36,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" id="miPerfil">Mi perfil</a></li>
               <li><a class="dropdown-item" href="index.html" id="cerrar_sesion">Cerrar sesion</a></li>
             </ul>
             <!-- fin -->
@@ -157,7 +157,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Forma de Pago</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -223,6 +223,10 @@
       </form>
       <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
         <p>¡Has comprado con exito!</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
+        <p>Debe haber al menos un articulo en el carrito</p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
 

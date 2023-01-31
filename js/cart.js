@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     })
 })
 
-
 function agregarProdCarrito() {
 
     let agregarHtml = "";
@@ -41,12 +40,11 @@ function agregarProdCarrito() {
     }
 
     document.querySelectorAll('input').forEach((input) => {
-        input.addEventListener('change', () => {
+        input.addEventListener('input', () => {
             const isLargeNumber = (element) => element.name === input.name;
             let lugar = nuevoProd.findIndex(isLargeNumber)
             nuevoProd[lugar].count = input.value;
-            carrito_json = JSON.stringify(nuevoProd);
-            localStorage.setItem("nuevoProd", carrito_json);
+            localStorage.setItem("nuevoProd", JSON.stringify(nuevoProd));
             agregarProdCarrito()
         })
     })
@@ -137,7 +135,6 @@ credito.addEventListener('click', function (e) {
     requiredCredito()
     vaciarCamposDebito()
     document.getElementById("mensajeFormPagoSelec").innerHTML = "Tarjeta de credito"
-    validarDatos()
 });
 
 function requiredDebit() {
@@ -169,24 +166,52 @@ debito.addEventListener('click', function (e) {
     inhabilitarCamposCredito()
     requiredDebit()
     document.getElementById("mensajeFormPagoSelec").innerHTML = "Transferencia bancaria"
-    validarDatos()
 });
+
+function validoCantArti() {
+    let prod = JSON.parse(localStorage.getItem("nuevoProd"));
+    let hay0Articulos = false
+    if (prod !== null) {
+        for (let i = 0; i < prod.length; i++) {
+            if (prod[i].count == 0) {
+                hay0Articulos = true
+            }
+        }
+    } else {
+        hay0Articulos = true
+    }
+    return hay0Articulos
+}
 
 let boton = document.getElementById("regBtn");
 var form = document.getElementById("form");
 
 boton.addEventListener('click', function () {
+
     if (!form.checkValidity()) {
         document.getElementById("form").classList.add('was-validated')
+    } else if (validoCantArti()) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+            showAlertError()
+        })
+    } else {
+        form.submit()
     }
 })
-form.addEventListener("submit", function () {
-    showAlertSuccess()
+
+form.addEventListener('submit', (event) => {
+    if (!validoCantArti()) {
+        showAlertSuccess()
+    }
 })
+
 function showAlertSuccess() {
     document.getElementById("alert-success").classList.add("show");
 }
 
-
+function showAlertError() {
+    document.getElementById("alert-danger").classList.add("show");
+}
 
 

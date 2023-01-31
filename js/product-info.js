@@ -1,16 +1,15 @@
 let listado = []
 let listadoComentarios = []
 
-
 document.addEventListener("DOMContentLoaded", function (e) {
     //obtiene el prodID de la pagina
     let prodID = localStorage.getItem("prodID");
     //con la url de PRODUCT_INFO el prod id y la extensión .json formamos la url deseada para cada producto.
     getJSONData(PRODUCT_INFO_URL + prodID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
-            listado = resultObj.data
-            infoProducto()
-            productosRelacionados()
+            listado = resultObj.data;
+            infoProducto();
+            productosRelacionados();
         }
     })
 })
@@ -21,15 +20,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     // obtenemos el json sobre los comentarios de cada producto
     getJSONData(PRODUCT_INFO_COMMENTS_URL + prodID + EXT_TYPE).then(function (resultObj) {
         if (resultObj.status == "ok") {
-            listadoComentarios = resultObj.data
-            mostrarComentarios()
+            listadoComentarios = resultObj.data;
+            mostrarComentarios();
         }
     })
 })
 
 
 function infoProducto() {
-
     let htmlContentToAppend = "";
 
     htmlContentToAppend = `
@@ -37,7 +35,7 @@ function infoProducto() {
             <div class="row justify-content-between">
                  <h1 class="col-4">${listado.name}</h1>
             <div>
-    <hr>
+        <hr>
         <p class="mb-1 fw-bold">Precio</p>
         <p>${listado.currency} ${listado.cost}</p>
         <p class="mb-1 fw-bold">Descripción</p>
@@ -66,8 +64,6 @@ function infoProducto() {
         `
     }
     document.getElementById("img").innerHTML = mostrarImagenes;
-
-
 }
 
 // agrega los comentarios que nos brindan en el json.
@@ -91,6 +87,10 @@ function mostrarComentarios() {
 
 
 document.getElementById("enviarComentario").addEventListener('click', function () {
+    nuevoComentario()
+})
+
+function nuevoComentario() {
     //obtengo el valor en el input de puntuacion y el del comentario (lo que el usuario escribe)
     var puntuacion = document.getElementById("puntuacion").value;
     var comentario = document.getElementById("comentario").value;
@@ -109,7 +109,7 @@ document.getElementById("enviarComentario").addEventListener('click', function (
             `
     //agrego al html con lo valores obtenidos anteriormente 
     document.getElementById("agregarNuevoComentario").innerHTML += agregarComentario;
-})
+}
 
 //edito funcion mostrar estrellas
 function mostrarEstrellas(puntuacion) {
@@ -125,7 +125,6 @@ function productosRelacionados() {
     let agregarProdRel = "";
     // reccorro el los productos relativos, me guardo el id del prod para luego poder redirrecionarlo a la info de ese prod
     for (let prod of listado.relatedProducts) {
-
         agregarProdRel += `
             <div onclick="setProdID(${prod.id})" class="card col-sm-1 cursor-active" style="width: 18rem;">
                 <img src="${prod.image}" class="card-img-top" alt="img">
@@ -138,4 +137,36 @@ function productosRelacionados() {
     document.getElementById("ProdRel").innerHTML = agregarProdRel;
 }
 
+let btnCart = document.getElementById("botonCarrito");
 
+btnCart.addEventListener("click", previsualizarCompra)
+
+function previsualizarCompra() {
+    let nuevoProd = JSON.parse(localStorage.getItem("nuevoProd"));
+
+    let agregarHtml = "";
+
+    if (nuevoProd !== null) {
+
+        for (let i = 0; i < nuevoProd.length; i++) {
+
+            agregarHtml += `
+            <ul class="list-group"> 
+                <th scope="row" class="col">
+                  <img src="${nuevoProd[i].image}" alt="imgProd" class="img-thumbnail">
+                </th>
+                <td class="col-3">${nuevoProd[i].name}</td>
+                <td id="precio" class="col-3">${nuevoProd[i].currency} ${nuevoProd[i].unitCost}</td>
+                <td class="col-3"><input type="number" name="${nuevoProd[i].name}" class="form-control cantPrd" value="${nuevoProd[i].count}" min="1" id="cantProdPrueb"></td>
+                <td class="col"><strong id="costoFinal${nuevoProd[i].id}">${nuevoProd[i].currency}${parseInt(nuevoProd[i].unitCost) * parseInt(nuevoProd[i].count)}</strong></td>
+                <td class="col"><button type="button" onclick="eliminarCarrito(${i})" name="${nuevoProd[i].name}" class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+              fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+              <path
+                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+            </svg></button></td>
+            </ul>
+        `
+        }
+        document.getElementById("prevVis").innerHTML = agregarHtml;
+    }
+}

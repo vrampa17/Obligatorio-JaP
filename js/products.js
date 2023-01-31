@@ -3,15 +3,24 @@ let maxCount = undefined;
 let listado = []
 let search = "";
 
-
+document.addEventListener("DOMContentLoaded", function (e) {
+    //obtiene el catID de la pagina
+    let catID = localStorage.getItem("catID");
+    //con la url de prducts el cat id y la extensión .json formamos la url deseada para cada producto. 
+    getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
+        if (resultObj.status == "ok") {
+            listado = resultObj.data
+            mostrarProducto()
+        }
+    })
+})
 
 function mostrarProducto() {
 
     let htmlContentToAppend = "";
 
     let titiulo = "";
-    titiulo = `
-                        
+    titiulo = `  
             <h1>Productos</h1>
             <p>Verás aqui todos los productos de la categoria ${listado.catName}</p>
             `
@@ -20,7 +29,6 @@ function mostrarProducto() {
 
 
     for (let producto of listado.products) {
-
         if (((minCount == undefined) || (minCount != undefined && parseInt(producto.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(producto.cost) <= maxCount))) {
 
@@ -48,18 +56,6 @@ function mostrarProducto() {
     document.getElementById("producto").innerHTML = htmlContentToAppend;
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
-    //obtiene el catID de la pagina
-    let catID = localStorage.getItem("catID");
-    //con la url de prducts el cat id y la extensión .json formamos la url deseada para cada producto. 
-    getJSONData(PRODUCTS_URL + catID + EXT_TYPE).then(function (resultObj) {
-        if (resultObj.status == "ok") {
-            listado = resultObj.data
-            mostrarProducto()
-        }
-    })
-})
-
 //ordena el listado de productos teniendo en cuenta su pecio (listado.products.cost) de forma ascendente
 function ordenarPrecioAsd() {
     listado.products.sort(function (a, b) {
@@ -86,7 +82,6 @@ function ordenarRelevanciaDes() {
 //cuando haga click en el boton que tiene id ordAsdPrecio ejecuta la funcion  ordenarPrecioAsd()
 document.getElementById("ordAsdPrecio").addEventListener("click", function () {
     ordenarPrecioAsd();
-
 });
 //cuando haga click en el boton que tiene id ordDesPrecio ejecuta la funcion ordenarPrecioDes()
 document.getElementById("ordDesPrecio").addEventListener("click", function () {
@@ -127,7 +122,6 @@ document.getElementById("filtroPrecio").addEventListener("click", function () {
     else {
         maxCount = undefined;
     }
-
     mostrarProducto();
 });
 
@@ -135,6 +129,5 @@ document.getElementById("filtroPrecio").addEventListener("click", function () {
 document.getElementById("buscador").addEventListener("input", function () {
     search = document.getElementById("buscador").value;
     mostrarProducto();
-
 })
 

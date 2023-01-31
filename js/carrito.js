@@ -35,7 +35,6 @@ document.getElementById("btnComprar").addEventListener("click", function () {
 function agregarAlCarrito(prod) {
 
     nuevoProd = JSON.parse(localStorage.getItem("nuevoProd"));
-    console.log('prod.unitCost', prod)
     const cant = {
         count: 1,
         currency: prod.currency,
@@ -52,7 +51,7 @@ function agregarAlCarrito(prod) {
         let carrito_json = JSON.stringify(carrito);
         localStorage.setItem("nuevoProd", carrito_json);
 
-    } else if (buscoCantProds(nuevoProd, productoUn.id)) {
+    } else if (buscoElemento(nuevoProd, productoUn.id)) {
 
         const isLargeNumber = (element) => element.id === productoUn.id;
         let lugar = nuevoProd.findIndex(isLargeNumber)
@@ -69,7 +68,7 @@ function agregarAlCarrito(prod) {
 
 }
 
-function buscoCantProds(array, pruebaID) {
+function buscoElemento(array, pruebaID) {
 
     for (var i = 0; i < array.length; i++) {
         if (pruebaID === array[i].id) {
